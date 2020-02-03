@@ -8,6 +8,7 @@ import {
   FETCH_STREAMS
 } from "./types";
 import streams from "../apis/streams";
+import history from "../history";
 
 export const signIn = userId => {
   return {
@@ -60,4 +61,6 @@ export const createStream = formValues => async (dispatch, getState) => {
     type: CREATE_STREAM,
     payload: response.data
   });
+  //some programmatic navigation to get the user back to the root route
+  history.push("/");
 };
