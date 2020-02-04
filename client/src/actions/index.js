@@ -39,13 +39,15 @@ export const fetchStream = id => async dispatch => {
 };
 
 export const editStream = (id, formValues) => async dispatch => {
-  const response = await streams.put(`/streams/${id}`, formValues);
+  //using patch as oppose to put to only update some field and not destroy other infos
+  const response = await streams.patch(`/streams/${id}`, formValues);
   dispatch({
     type: EDIT_STREAM,
     payload: response.data
   });
+  history.push("/");
 };
-export const deletestream = id => async dispatch => {
+export const deleteStream = id => async dispatch => {
   await streams.post(`/streams/${id}`);
   dispatch({
     type: DELETE_STREAM,
